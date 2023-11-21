@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/logo.ico' %}" type="image/x-icon">
+
+    <title>Finances &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style_form.css' %}">
+
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <!-- <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> -->
+   
+    
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.html" class="h2 mb-0">Finances<span class="text-primary">.</span> </a></h1>
+          </div>
+
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="{% url 'bank:index' %}" class="nav-link">Home</a></li>
+               </ul>
+            </nav>
+          </div>
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+      
+    </header>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-5">
+
+                <h2 class="h4 text-black mb-5"></h2> 
+
+
+                <form action="{% url 'customer:application_form' %}" method="post" class="p-5 bg-white">
+                    {% csrf_token %}
+                  <h2 class="h4 text-black mb-5">Fill your details</h2>
+
+                  <!-- {{ form.as_p }} -->
+              
+                    <!-- Additional Fields -->
+                     <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black" for="{{ form.name.id_for_label }}">Name</label>
+                            {{ form.name }}
+                        </div>
+                    </div>
+                
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.dob.id_for_label }}">Date of Birth</label>
+                            {{ form.dob }}</div>
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.age.id_for_label }}">Age</label>
+                            {{ form.age }}
+                        </div>
+                    </div>
+                
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.gender.id_for_label }}">Gender</label>
+                            {{ form.gender }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                            {{ form.phone_number }}
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black" for="{{ form.email.id_for_label }}">Email</label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group address">
+                        <div class="col-md-12">
+                            <label class="text-black" for="{{ form.address.id_for_label }}">Address</label>
+                            {{ form.address }}
+                        </div>
+                    </div>
+                
+                <!-- District and Branch Dropdowns -->
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.district.id_for_label }}">District</label>
+                            {{ form.district }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black" for="{{ form.branch.id_for_label }}">Branch</label>
+                            {{ form.branch }}
+                        </div>
+                    </div>
+
+                    <!-- Account Type Dropdown -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black" for="{{ form.account_type.id_for_label }}">Account Type</label>
+                            {{ form.account_type }}
+                        </div>
+                    </div>
+
+                    <!-- Materials Provided (Checkbox) -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="text-black">Materials Provided</label><br>
+                            {{form.material}}
+                            <!-- Add other materials as needed -->
+                        </div>
+                    </div>
+
+            
+                    <!-- Submit & Logout-->
+                    <div class="row form-group">
+                      <div class="col-md-6">
+                          <input type="submit" value="Submit" class="btn btn-primary btn-md text-white">
+                      </div>
+                      <div class="col-md-6">
+                          <a href="{% url 'bank:index' %}" class="btn btn-secondary btn-md text-white">Logout</a>
+                      </div>
+                  </div>
+                  {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-danger">{{ message }}</p>
+                        <p><a href="{% url 'bank:index' %}">Return to Home Page</a></p>
+                    {% endfor %}
+                  {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fetch branches when the page loads
+            var initialDistrictId = $('#id_district').val();
+            if (initialDistrictId) {
+                $.ajax({
+                    url: '/customer/get_branches/' + initialDistrictId + '/',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var branchSelect = $('#id_branch');
+                        branchSelect.empty();
+                        $.each(data, function (key, value) {
+                            branchSelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+            }
+    
+            // Update branches when the district changes
+            $('#id_district').change(function () {
+                var districtId = $(this).val();
+                if (districtId) {
+                    $.ajax({
+                        url: '/customer/get_branches/' + districtId + '/',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            var branchSelect = $('#id_branch');
+                            branchSelect.empty();
+                            $.each(data, function (key, value) {
+                                branchSelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
