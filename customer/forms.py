@@ -1,5 +1,5 @@
 from django import forms
-from .models import Application, Branch, Material
+from .models import Application, Branch
 
 class ApplicationForm(forms.ModelForm):
     branch = forms.ModelChoiceField(queryset=Branch.objects.all(), empty_label='', required=False)
@@ -8,10 +8,11 @@ class ApplicationForm(forms.ModelForm):
         model = Application
         fields = '__all__'
         widgets = {
-            'material': forms.CheckboxSelectMultiple,
+            'material': forms.CheckboxSelectMultiple(),
             'district': forms.Select(attrs={'id': 'id_district'}),
         }
 
+
     def __init__(self, *args, **kwargs):
             super(ApplicationForm, self).__init__(*args, **kwargs)
-            print(self.fields['material'].queryset)
+            (self.fields['material'].queryset)

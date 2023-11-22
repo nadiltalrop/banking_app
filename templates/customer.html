@@ -50,7 +50,7 @@
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index.html" class="h2 mb-0">Finances<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="{% url 'bank:index' %}" class="h2 mb-0">Finances<span class="text-primary">.</span> </a></h1>
           </div>
 
           <div class="col-12 col-md-10 d-none d-xl-block">
@@ -162,16 +162,14 @@
                       <div class="col-md-6">
                           <input type="submit" value="Submit" class="btn btn-primary btn-md text-white">
                       </div>
-                      <div class="col-md-6">
-                          <a href="{% url 'bank:index' %}" class="btn btn-secondary btn-md text-white">Logout</a>
-                      </div>
+                    
                   </div>
-                  {% if messages %}
+                  <!-- {% if messages %}
                     {% for message in messages %}
                         <p class="text-danger">{{ message }}</p>
                         <p><a href="{% url 'bank:index' %}">Return to Home Page</a></p>
                     {% endfor %}
-                  {% endif %}
+                  {% endif %} -->
                 </form>
             </div>
         </div>

@@ -6,4 +6,5 @@ def index(request):
 
 
 def single(request):
-    return render(request,'singlepage.html')
+    success_message = request.GET.get('success_message', '')
+    return render(request, 'singlepage.html', {'success_message': success_message})

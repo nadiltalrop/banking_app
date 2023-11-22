@@ -115,8 +115,20 @@
               <div class="slide">
                 <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
                 <p class="mb-5 desc"  data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae minima delectus accusamus accusantium deleniti libero excepturi porro illo.</p>
+                
+                {% if success_message %}
+                  <div class="alert alert-success">
+                      {{ success_message }}
+                  </div>
+                {% endif %}
+
+                
                 <div data-aos="fade-up" data-aos-delay="100">
                   <a href="{% url 'customer:application_form' %}" class="btn  btn-primary mr-2 mb-2">Apply Here</a>
+                  <a href="{% url 'bank:index' %}" class="btn btn-secondary btn-md text-white">Logout</a>
+                </div>
+                <div class="col-md-6">
+                 
                 </div>
               </div>
 

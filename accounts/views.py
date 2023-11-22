@@ -8,25 +8,32 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-        if password == confirm_password:
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username already exists')
-                return redirect('register.html')
-            else:
-                user = User.objects.create_user(username=username, password=password,)
-                user.save()
-                messages.success(request, 'Registration successful')
-                return redirect('accounts:login')
-        else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        # Check if any of the fields are empty
+        if not (username and password and confirm_password):
+            messages.error(request, 'Please fill all the fields')
+            return redirect('accounts:register')
+
+        # Check if passwords match
+        if password != confirm_password:
             messages.error(request, 'Passwords do not match')
-            return redirect('register')
-    else:
-        messages.error(request, 'Please fill all the fields')
-        return render(request, 'register.html')
-    
+            return redirect('accounts:register')
+
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists')
+            return redirect('accounts:register')
+
+        # Create the user
+        user = User.objects.create_user(username=username, password=password)
+        messages.success(request, 'Registration successful')
+        return redirect('accounts:login')
+
+    # If the request is not a POST, display the registration form
+    return render(request, 'register.html')
 
 def login(request):
     if request.method == 'POST':

@@ -5,6 +5,8 @@ from django.contrib import messages
 
 from django.http import JsonResponse
 from .models import Branch
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 # def customer_data(request):
@@ -17,7 +19,7 @@ def application_form(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Application accepted!')
-            return redirect('customer:application_form')
+            return HttpResponseRedirect(f"{reverse('bank:single')}?success_message=Application Accepted")
         else:
             for field, errors in form.errors.items():
                 messages.error(request, f"{field}: {', '.join(errors)}")
